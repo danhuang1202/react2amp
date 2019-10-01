@@ -71,6 +71,32 @@ const entries = [
         format: 'es'
       }
     ]
+  },
+  {
+    input: 'src/utils/amp.ts',
+    output: [
+      {
+        dir: 'lib/utils',
+        format: 'cjs'
+      },
+      {
+        dir: 'es/utils',
+        format: 'es'
+      }
+    ]
+  },
+  {
+    input: 'src/utils/asset.ts',
+    output: [
+      {
+        dir: 'lib/utils',
+        format: 'cjs'
+      },
+      {
+        dir: 'es/utils',
+        format: 'es'
+      }
+    ]
   }
 ]
 
