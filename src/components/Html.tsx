@@ -59,10 +59,10 @@ function Html({
     return children
   })
 
+  const ampAttributes = { amp: '' }
   return (
     <AmpProvider>
-      // @ts-ignore
-      <html amp="" lang="en-GB">
+      <html lang="en-GB" {...ampAttributes}>
         <head>
           <meta charSet="utf-8" />
           {filteredHead}
