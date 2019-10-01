@@ -1,3 +1,7 @@
+## <small>1.3.2 (2019-10-01)</small>
+
+* fix: skip typescript check for amp attribute ([e5fcbd8](https://github.com/danhuang1202/react2amp/commit/e5fcbd8))
+
 ## <small>1.3.1 (2019-10-01)</small>
 
 * fix: downgrade react ([10795f4](https://github.com/danhuang1202/react2amp/commit/10795f4))
