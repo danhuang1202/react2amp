@@ -1,3 +1,7 @@
+## <small>1.3.1 (2019-10-01)</small>
+
+* fix: downgrade react ([10795f4](https://github.com/danhuang1202/react2amp/commit/10795f4))
+
 ## 1.3.0 (2019-10-01)
 
 * feat: separate package to index and plugins ([9ac5a17](https://github.com/danhuang1202/react2amp/commit/9ac5a17))
