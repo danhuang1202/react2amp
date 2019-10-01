@@ -1,3 +1,7 @@
+## 1.1.0 (2019-10-01)
+
+* feat: add utils directory ([4eb71c2](https://github.com/danhuang1202/react2amp/commit/4eb71c2))
+
 ## <small>1.0.1 (2019-10-01)</small>
 
 * fix: rename babel plugin name ([14589a8](https://github.com/danhuang1202/react2amp/commit/14589a8))
