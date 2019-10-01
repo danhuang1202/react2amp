@@ -47,7 +47,7 @@ const entries = [
     ]
   },
   {
-    input: 'src/plugins/express.ts',
+    input: 'src/plugins/express.tsx',
     output: [
       {
         dir: 'lib/plugins',
