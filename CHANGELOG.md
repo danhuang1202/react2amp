@@ -1,3 +1,7 @@
+## 1.2.0 (2019-10-01)
+
+* feat: build utils ([ae9d5b8](https://github.com/danhuang1202/react2amp/commit/ae9d5b8))
+
 ## 1.1.0 (2019-10-01)
 
 * feat: add utils directory ([4eb71c2](https://github.com/danhuang1202/react2amp/commit/4eb71c2))
