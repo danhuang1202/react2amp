@@ -37,8 +37,8 @@
   "author": "danhuang",
   "license": "ISC",
   "dependencies": {
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "string.prototype.matchall": "^3.0.1"
   },
   "peerDependencies": {
