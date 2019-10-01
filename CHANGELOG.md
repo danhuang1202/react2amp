@@ -1,3 +1,8 @@
+## <small>1.0.1 (2019-10-01)</small>
+
+* fix: rename babel plugin name ([14589a8](https://github.com/danhuang1202/react2amp/commit/14589a8))
+* docs: rename workflow name ([5fb8027](https://github.com/danhuang1202/react2amp/commit/5fb8027))
+
 ## 1.0.0 (2019-10-01)
 
 * ci: add GH_TOKEN ([5aaf968](https://github.com/danhuang1202/react2amp/commit/5aaf968))
