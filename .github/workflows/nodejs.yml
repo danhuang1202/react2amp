@@ -20,7 +20,7 @@ jobs:
     - name: install
       run: npm install
     - name: lint
-      run: npm npm run ci-build
+      run: npm run ci-lint
     - name: build
       run: npm run ci-build --if-present
     - name: publish
