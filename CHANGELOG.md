@@ -1,0 +1,10 @@
+## 1.0.0 (2019-10-01)
+
+* ci: add GH_TOKEN ([5aaf968](https://github.com/danhuang1202/react2amp/commit/5aaf968))
+* ci: add lint and publish step ([0c7b1c6](https://github.com/danhuang1202/react2amp/commit/0c7b1c6))
+* ci: update type to array ([3b938b4](https://github.com/danhuang1202/react2amp/commit/3b938b4))
+* typo: lint script ([e7909e1](https://github.com/danhuang1202/react2amp/commit/e7909e1))
+* fix: rename express entry point filename ([15ec445](https://github.com/danhuang1202/react2amp/commit/15ec445))
+* enable github action ([e41f20a](https://github.com/danhuang1202/react2amp/commit/e41f20a))
+* initial commit ([cb7c6e7](https://github.com/danhuang1202/react2amp/commit/cb7c6e7))
+* update node version in github action ([0da08f0](https://github.com/danhuang1202/react2amp/commit/0da08f0))
