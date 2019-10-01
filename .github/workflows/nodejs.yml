@@ -19,7 +19,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: install
       run: npm install
+    - name: lint
+      run: npm npm run ci-build
     - name: build
       run: npm run ci-build --if-present
+    - name: publish
+      run: npm run ci-publish
       env:
-        CI: true
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
