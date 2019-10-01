@@ -1,0 +1,11 @@
+.eslintignore
+.eslintrc
+.gitignore
+.prettierignore
+.prettierrc
+.vscode
+.github
+.travis.yml
+__tests__/
+src/
+package-lock.json
