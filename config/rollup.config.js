@@ -21,6 +21,15 @@ const entries = [
     ]
   },
   {
+    input: 'src/plugins/index.ts',
+    output: [
+      {
+        dir: 'lib/plugins',
+        format: 'cjs'
+      }
+    ]
+  },
+  {
     input: 'src/components/Html.tsx',
     output: [
       {
