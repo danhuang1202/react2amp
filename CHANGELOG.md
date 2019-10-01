@@ -1,3 +1,7 @@
+## 1.3.0 (2019-10-01)
+
+* feat: separate package to index and plugins ([9ac5a17](https://github.com/danhuang1202/react2amp/commit/9ac5a17))
+
 ## 1.2.0 (2019-10-01)
 
 * feat: build utils ([ae9d5b8](https://github.com/danhuang1202/react2amp/commit/ae9d5b8))
