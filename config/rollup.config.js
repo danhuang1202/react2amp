@@ -82,19 +82,6 @@ const entries = [
     ]
   },
   {
-    input: 'src/plugins/postcss.ts',
-    output: [
-      {
-        dir: 'lib/plugins',
-        format: 'cjs'
-      },
-      {
-        dir: 'es/plugins',
-        format: 'es'
-      }
-    ]
-  },
-  {
     input: 'src/utils/amp.ts',
     output: [
       {

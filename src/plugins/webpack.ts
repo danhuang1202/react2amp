@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const matchAll = require('string.prototype.matchall')
-const oprimizeCss = require('./postcss').default
 
 type FileName = string
 
@@ -134,7 +133,7 @@ class AmpAssetPlugin {
               continue
             }
 
-            css += oprimizeCss(compilation.assets[filename].source())
+            css += compilation.assets[filename].source()
           }
         })
 

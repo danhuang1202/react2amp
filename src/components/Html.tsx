@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React, { ReactElement, ReactNode, isValidElement } from 'react'
 import AmpProvider from './AmpProvider'
 import { AmpScript } from '../plugins/webpack'
 
@@ -25,19 +25,20 @@ const AMP_BOILERPLATE =
 const AMP_NO_SCRIPT_BOILERPLATE =
   'body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}'
 
-function Html({
-  head,
-  main,
-  asset = {},
-  styles = [],
-  canonical
-}: Props): ReactElement {
-  const { scripts = [], css = '' } = asset
-  const runtimeCss = styles
-    .map(style => style.props.dangerouslySetInnerHTML.__html)
-    .join('')
+function getRuntimeCss(styles: ReactElement[] = []): string {
+  if (!styles.length) {
+    return ''
+  }
 
-  const filteredHead = React.Children.map(head, children => {
+  // @ts-ignore
+  const cssContent = styles.filter(style =>
+    isValidElement(style) ? style.props.dangerouslySetInnerHTML.__html : ''
+  )
+  return cssContent.join('')
+}
+
+function filterHead(head: ReactElement[] = []): ReactElement[] {
+  return React.Children.map(head, children => {
     const { type = '', props = {} } = children
     let warning = ''
 
@@ -58,14 +59,25 @@ function Html({
 
     return children
   })
+}
 
-  const ampAttributes = { amp: '' }
+function Html({
+  head,
+  main,
+  asset = {},
+  styles = [],
+  canonical
+}: Props): ReactElement {
+  const { scripts = [], css = '' } = asset
+  const runtimeCss = getRuntimeCss(styles)
+  const headElement = filterHead(head)
+
   return (
     <AmpProvider>
-      <html lang="en-GB" {...ampAttributes}>
+      <html lang="en-GB" {...{ amp: '' }}>
         <head>
           <meta charSet="utf-8" />
-          {filteredHead}
+          {headElement}
           <meta
             name="viewport"
             content="width=device-width,minimum-scale=1,initial-scale=1"
