@@ -34,7 +34,10 @@ function getRuntimeCss(styles: ReactElement[] = []): string {
     // @ts-ignore Property 'dangerouslySetInnerHTML' does not exist on type 'unknown'.
     isValidElement(style) ? style.props.dangerouslySetInnerHTML.__html : ''
   )
-  return cssContent.join('')
+  return cssContent
+    .join('')
+    .replace(/\r?\n/g, '')
+    .replace(/\/\*.*\*\//, '')
 }
 
 function filterHead(head: ReactElement[] = []): ReactElement[] {
