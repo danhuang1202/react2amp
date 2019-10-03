@@ -1,3 +1,10 @@
+## 1.4.0 (2019-10-03)
+
+* fix: update cssnano version ([2a07ba4](https://github.com/danhuang1202/react2amp/commit/2a07ba4))
+* move postcss and cssnano to peerDependencies ([b43c1fe](https://github.com/danhuang1202/react2amp/commit/b43c1fe))
+* feat: add postcss plugin ([535bf6a](https://github.com/danhuang1202/react2amp/commit/535bf6a))
+* feat: optimize css by using postcssOptimize ([3b074e6](https://github.com/danhuang1202/react2amp/commit/3b074e6))
+
 ## <small>1.3.2 (2019-10-01)</small>
 
 * fix: skip typescript check for amp attribute ([e5fcbd8](https://github.com/danhuang1202/react2amp/commit/e5fcbd8))
