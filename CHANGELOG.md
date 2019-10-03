@@ -1,3 +1,7 @@
+## 1.7.0 (2019-10-03)
+
+* feat: add includeEntries into option ([f2b51eb](https://github.com/danhuang1202/react2amp/commit/f2b51eb))
+
 ## <small>1.6.1 (2019-10-03)</small>
 
 * fix: remove comment first and then remove change line ([8ecc2d2](https://github.com/danhuang1202/react2amp/commit/8ecc2d2))
