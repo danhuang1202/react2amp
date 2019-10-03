@@ -30,8 +30,8 @@ function getRuntimeCss(styles: ReactElement[] = []): string {
     return ''
   }
 
-  // @ts-ignore
-  const cssContent = styles.filter(style =>
+  const cssContent = styles.map(style =>
+    // @ts-ignore Property 'dangerouslySetInnerHTML' does not exist on type 'unknown'.
     isValidElement(style) ? style.props.dangerouslySetInnerHTML.__html : ''
   )
   return cssContent.join('')
