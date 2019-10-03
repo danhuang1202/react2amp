@@ -1,3 +1,7 @@
+## 1.6.0 (2019-10-03)
+
+* feat: remove change line and comment in styles ([d3a8cc7](https://github.com/danhuang1202/react2amp/commit/d3a8cc7))
+
 ## 1.5.0 (2019-10-03)
 
 * fix: @ts-ignore Property 'dangerouslySetInnerHTML' does not exist on type 'unknown' ([f55cba3](https://github.com/danhuang1202/react2amp/commit/f55cba3))
