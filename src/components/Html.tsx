@@ -36,8 +36,8 @@ function getRuntimeCss(styles: ReactElement[] = []): string {
   )
   return cssContent
     .join('')
+    .replace(/\/\*.*\*\//g, '')
     .replace(/\r?\n/g, '')
-    .replace(/\/\*.*\*\//, '')
 }
 
 function filterHead(head: ReactElement[] = []): ReactElement[] {
