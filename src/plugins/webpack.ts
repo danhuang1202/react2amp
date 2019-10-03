@@ -4,13 +4,14 @@ const matchAll = require('string.prototype.matchall')
 
 type FileName = string
 
-type ExcludeEntries = string[]
+type Entries = string[]
 
 type ExcludeResourcesRegExp = RegExp
 
 type Options = {
   filename: FileName
-  excludeEntries?: ExcludeEntries
+  includeEntries?: Entries
+  excludeEntries?: Entries
   excludeResourcesRegExp?: ExcludeResourcesRegExp
 }
 
@@ -29,11 +30,13 @@ const AMP_COMPONENTS_DEFAULT_VERSION = 0.1
 
 class AmpAssetPlugin {
   private filename: FileName
-  private excludeEntries: ExcludeEntries
+  private includeEntries: Entries
+  private excludeEntries: Entries
   private excludeResourcesRegExp: ExcludeResourcesRegExp
 
   public constructor(options: Options) {
     this.filename = options.filename
+    this.includeEntries = options.includeEntries || []
     this.excludeEntries = options.excludeEntries || []
     this.excludeResourcesRegExp = options.excludeResourcesRegExp
   }
@@ -46,7 +49,17 @@ class AmpAssetPlugin {
       const cssRegex = /\.css(\?|$)/
 
       for (const [entry, data] of compilation.entrypoints.entries()) {
-        if (this.excludeEntries.indexOf(entry) !== -1) {
+        if (
+          this.includeEntries.length &&
+          this.includeEntries.indexOf(entry) === -1
+        ) {
+          continue
+        }
+
+        if (
+          this.excludeEntries.length &&
+          this.excludeEntries.indexOf(entry) !== -1
+        ) {
           continue
         }
 
