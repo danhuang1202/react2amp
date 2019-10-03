@@ -1,3 +1,8 @@
+## 1.5.0 (2019-10-03)
+
+* fix: @ts-ignore Property 'dangerouslySetInnerHTML' does not exist on type 'unknown' ([f55cba3](https://github.com/danhuang1202/react2amp/commit/f55cba3))
+* feat: remove postcss plugin ([79d43f7](https://github.com/danhuang1202/react2amp/commit/79d43f7))
+
 ## 1.4.0 (2019-10-03)
 
 * fix: update cssnano version ([2a07ba4](https://github.com/danhuang1202/react2amp/commit/2a07ba4))
