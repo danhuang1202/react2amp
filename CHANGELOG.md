@@ -1,3 +1,7 @@
+## <small>1.6.1 (2019-10-03)</small>
+
+* fix: remove comment first and then remove change line ([8ecc2d2](https://github.com/danhuang1202/react2amp/commit/8ecc2d2))
+
 ## 1.6.0 (2019-10-03)
 
 * feat: remove change line and comment in styles ([d3a8cc7](https://github.com/danhuang1202/react2amp/commit/d3a8cc7))
