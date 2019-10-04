@@ -1,3 +1,7 @@
+## <small>1.7.1 (2019-10-04)</small>
+
+* fix: set amp context default value to false ([1e93f21](https://github.com/danhuang1202/react2amp/commit/1e93f21))
+
 ## 1.7.0 (2019-10-03)
 
 * feat: add includeEntries into option ([f2b51eb](https://github.com/danhuang1202/react2amp/commit/f2b51eb))
