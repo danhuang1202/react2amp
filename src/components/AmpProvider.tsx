@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react'
 
-export const AmpContext = React.createContext({})
+export const AmpContext = React.createContext(false)
 
 type Props = {
   /** React children element */
