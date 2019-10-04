@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode, isValidElement } from 'react'
 import AmpProvider from './AmpProvider'
 import { AmpScript } from '../plugins/webpack'
 
-export type Props = {
+type Props = {
   /** Array of React elements for <head /> tags */
   head?: ReactElement[]
   /** Main react element or HTML string */
