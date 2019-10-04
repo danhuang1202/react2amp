@@ -1,3 +1,7 @@
+## 1.8.0 (2019-10-04)
+
+* feat: export AmpProvider ([ccc7a22](https://github.com/danhuang1202/react2amp/commit/ccc7a22))
+
 ## <small>1.7.1 (2019-10-04)</small>
 
 * fix: set amp context default value to false ([1e93f21](https://github.com/danhuang1202/react2amp/commit/1e93f21))
