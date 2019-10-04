@@ -1,3 +1,8 @@
+## 1.9.0 (2019-10-04)
+
+* feat: update getAmpAsset() ([b54bee4](https://github.com/danhuang1202/react2amp/commit/b54bee4))
+* feat: update middleware ([478f21b](https://github.com/danhuang1202/react2amp/commit/478f21b))
+
 ## 1.8.0 (2019-10-04)
 
 * feat: export AmpProvider ([ccc7a22](https://github.com/danhuang1202/react2amp/commit/ccc7a22))
