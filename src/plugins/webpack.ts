@@ -29,6 +29,8 @@ const AMP_BUILD_IN_COMPONENTS = ['amp-img', 'amp-layout', 'amp-pixel']
 const AMP_COMPONENTS_DEFAULT_VERSION = 0.1
 const AMP_BIND_TAG = 'amp-bind'
 const AMP_STATE_TAG = 'amp-state'
+const AMP_FORM_TAG = 'amp-form'
+const AMP_FORM_SUPPORT_TAG = ['input', 'form']
 
 class AmpAssetPlugin {
   private filename: FileName
@@ -176,18 +178,14 @@ class AmpAssetPlugin {
   }
 
   private findAmpComponents(source: string): AmpComponentMap | void {
-    const ampComponentRegex = /\(["|']amp-(.*?)["|'],\s*{(.*?)}/g
+    const ampComponentRegex = /\(['|"](amp-.*?|form|input)['|"],\s*{(.*?)}/g
     const versionRegex = /["|']data-ver["|']\s*:\s*["|'](.*?)["|']/
-    if (source.indexOf('amp-') === -1) {
-      return
-    }
-
     const sourceWithoutNewLine = source.replace(/\r?\n/g, '')
     const matches = matchAll(sourceWithoutNewLine, ampComponentRegex)
     let result
 
     for (const match of matches) {
-      let tag = `amp-${match[1]}`
+      let tag = match[1]
       const attributes = match[2]
 
       if (AMP_BUILD_IN_COMPONENTS.indexOf(tag) !== -1) {
@@ -200,6 +198,10 @@ class AmpAssetPlugin {
 
       if (tag === AMP_STATE_TAG) {
         tag = AMP_BIND_TAG
+      }
+
+      if (AMP_FORM_SUPPORT_TAG.indexOf(tag) !== -1) {
+        tag = AMP_FORM_TAG
       }
 
       const versionMatch = attributes.match(versionRegex)
