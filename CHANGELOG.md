@@ -1,3 +1,7 @@
+## 1.11.0 (2019-10-06)
+
+* feat: support form and input tag in amp ([51675f5](https://github.com/danhuang1202/react2amp/commit/51675f5))
+
 ## <small>1.10.1 (2019-10-06)</small>
 
 * fix: rename amp-state to amp-bind ([860dd9b](https://github.com/danhuang1202/react2amp/commit/860dd9b))
