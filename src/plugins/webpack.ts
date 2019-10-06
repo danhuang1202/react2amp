@@ -175,8 +175,8 @@ class AmpAssetPlugin {
   }
 
   private findAmpComponents(source: string): AmpComponentMap | void {
-    const ampComponentRegex = /\("amp-(.*?)",\s*{(.*?)}/g
-    const versionRegex = /"data-ver"\s*:\s*"(.*?)"/
+    const ampComponentRegex = /\(["|']amp-(.*?)["|'],\s*{(.*?)}/g
+    const versionRegex = /["|']data-ver["|']\s*:\s*["|'](.*?)["|']/
     if (source.indexOf('amp-') === -1) {
       return
     }
