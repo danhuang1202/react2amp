@@ -1,3 +1,8 @@
+## <small>1.10.1 (2019-10-06)</small>
+
+* fix: rename amp-state to amp-bind ([860dd9b](https://github.com/danhuang1202/react2amp/commit/860dd9b))
+* fix: update regex for amp-componnet ([71820ce](https://github.com/danhuang1202/react2amp/commit/71820ce))
+
 ## 1.10.0 (2019-10-06)
 
 * fix: export AmpState ([3a83486](https://github.com/danhuang1202/react2amp/commit/3a83486))
