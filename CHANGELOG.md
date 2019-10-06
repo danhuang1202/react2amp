@@ -1,3 +1,9 @@
+## 1.10.0 (2019-10-06)
+
+* fix: export AmpState ([3a83486](https://github.com/danhuang1202/react2amp/commit/3a83486))
+* fix: map amp-state to amp-bind ([a4fea81](https://github.com/danhuang1202/react2amp/commit/a4fea81))
+* feat: add <AmpState /> ([6c0c49f](https://github.com/danhuang1202/react2amp/commit/6c0c49f))
+
 ## 1.9.0 (2019-10-04)
 
 * feat: update getAmpAsset() ([b54bee4](https://github.com/danhuang1202/react2amp/commit/b54bee4))
