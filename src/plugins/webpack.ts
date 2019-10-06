@@ -27,6 +27,7 @@ export type AmpScript = {
 // build-in amp component: https://github.com/ampproject/amphtml/blob/14f3365261ad845cebbdaf9633ef702e4f50aa96/spec/amp-html-components.md#components
 const AMP_BUILD_IN_COMPONENTS = ['amp-img', 'amp-layout', 'amp-pixel']
 const AMP_COMPONENTS_DEFAULT_VERSION = 0.1
+const AMP_BIND_TAG = 'amp-bind'
 
 class AmpAssetPlugin {
   private filename: FileName
@@ -185,7 +186,7 @@ class AmpAssetPlugin {
     let result
 
     for (const match of matches) {
-      const tag = `amp-${match[1]}`
+      let tag = `amp-${match[1]}`
       const attributes = match[2]
 
       if (AMP_BUILD_IN_COMPONENTS.indexOf(tag) !== -1) {
@@ -194,6 +195,10 @@ class AmpAssetPlugin {
 
       if (!result) {
         result = {}
+      }
+
+      if (tag === AMP_BIND_TAG) {
+        tag = AMP_BIND_TAG
       }
 
       const versionMatch = attributes.match(versionRegex)
