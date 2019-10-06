@@ -28,6 +28,7 @@ export type AmpScript = {
 const AMP_BUILD_IN_COMPONENTS = ['amp-img', 'amp-layout', 'amp-pixel']
 const AMP_COMPONENTS_DEFAULT_VERSION = 0.1
 const AMP_BIND_TAG = 'amp-bind'
+const AMP_STATE_TAG = 'amp-state'
 
 class AmpAssetPlugin {
   private filename: FileName
@@ -197,7 +198,7 @@ class AmpAssetPlugin {
         result = {}
       }
 
-      if (tag === AMP_BIND_TAG) {
+      if (tag === AMP_STATE_TAG) {
         tag = AMP_BIND_TAG
       }
 
