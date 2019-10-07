@@ -1,3 +1,7 @@
+## 1.15.0 (2019-10-07)
+
+* feat: main import ([1d19d72](https://github.com/danhuang1202/react2amp/commit/1d19d72))
+
 ## 1.14.0 (2019-10-07)
 
 * feat: update library path ([efe3b37](https://github.com/danhuang1202/react2amp/commit/efe3b37))
