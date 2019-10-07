@@ -41,7 +41,7 @@ const entries = [
         format: 'cjs'
       },
       {
-        file: 'es/amp',
+        dir: 'es/amp',
         format: 'es'
       }
     ]
