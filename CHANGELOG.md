@@ -1,3 +1,7 @@
+## 1.13.0 (2019-10-07)
+
+* feat: add AmpAnimation ([672767d](https://github.com/danhuang1202/react2amp/commit/672767d))
+
 ## <small>1.12.1 (2019-10-07)</small>
 
 * fix: update regex for amp component ([4aa09f9](https://github.com/danhuang1202/react2amp/commit/4aa09f9))
