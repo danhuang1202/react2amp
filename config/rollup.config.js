@@ -26,83 +26,22 @@ const entries = [
       {
         dir: 'lib/plugins',
         format: 'cjs'
-      }
-    ]
-  },
-  {
-    input: 'src/components/Html.tsx',
-    output: [
-      {
-        dir: 'lib/components',
-        format: 'cjs'
-      },
-      {
-        dir: 'es/components',
-        format: 'es'
-      }
-    ]
-  },
-  {
-    input: 'src/plugins/babel.ts',
-    output: [
-      {
-        dir: 'lib/plugins',
-        format: 'cjs'
       },
       {
         dir: 'es/plugins',
-        format: 'es'
+        format: 'cjs'
       }
     ]
   },
   {
-    input: 'src/plugins/express.tsx',
+    input: 'src/amp/index.ts',
     output: [
       {
-        dir: 'lib/plugins',
+        dir: 'lib/amp',
         format: 'cjs'
       },
       {
-        dir: 'es/plugins',
-        format: 'es'
-      }
-    ]
-  },
-  {
-    input: 'src/plugins/webpack.ts',
-    output: [
-      {
-        dir: 'lib/plugins',
-        format: 'cjs'
-      },
-      {
-        dir: 'es/plugins',
-        format: 'es'
-      }
-    ]
-  },
-  {
-    input: 'src/utils/amp.ts',
-    output: [
-      {
-        dir: 'lib/utils',
-        format: 'cjs'
-      },
-      {
-        dir: 'es/utils',
-        format: 'es'
-      }
-    ]
-  },
-  {
-    input: 'src/utils/asset.ts',
-    output: [
-      {
-        dir: 'lib/utils',
-        format: 'cjs'
-      },
-      {
-        dir: 'es/utils',
+        file: 'es/amp',
         format: 'es'
       }
     ]
