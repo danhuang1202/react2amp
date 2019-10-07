@@ -1,3 +1,7 @@
+## 1.14.0 (2019-10-07)
+
+* feat: update library path ([efe3b37](https://github.com/danhuang1202/react2amp/commit/efe3b37))
+
 ## 1.13.0 (2019-10-07)
 
 * feat: add AmpAnimation ([672767d](https://github.com/danhuang1202/react2amp/commit/672767d))
