@@ -178,7 +178,7 @@ class AmpAssetPlugin {
   }
 
   private findAmpComponents(source: string): AmpComponentMap | void {
-    const ampComponentRegex = /\(['|"](amp-.*?|form|input)['|"],\s*{(.*?)}/g
+    const ampComponentRegex = /\(['|"](amp-.*?|form|input)['|"]\s*,.*?{(.*?)}/g
     const versionRegex = /["|']data-ver["|']\s*:\s*["|'](.*?)["|']/
     const sourceWithoutNewLine = source.replace(/\r?\n/g, '')
     const matches = matchAll(sourceWithoutNewLine, ampComponentRegex)
