@@ -87,7 +87,10 @@ function Html({
           />
           <link rel="canonical" href={canonical} />
           {(css || runtimeCss) && (
-            <style amp-custom="">{`${css}${runtimeCss}`}</style>
+            <style
+              amp-custom=""
+              dangerouslySetInnerHTML={{ __html: `${css}${runtimeCss}` }}
+            />
           )}
           <style amp-boilerplate="">{AMP_BOILERPLATE}</style>
           <noscript>
