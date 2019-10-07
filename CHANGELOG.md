@@ -1,3 +1,7 @@
+## 1.12.0 (2019-10-07)
+
+* feat: use dangerouslySetInnerHTML to set style ([6403fde](https://github.com/danhuang1202/react2amp/commit/6403fde))
+
 ## 1.11.0 (2019-10-06)
 
 * feat: support form and input tag in amp ([51675f5](https://github.com/danhuang1202/react2amp/commit/51675f5))
