@@ -1,3 +1,7 @@
+## <small>1.12.1 (2019-10-07)</small>
+
+* fix: update regex for amp component ([4aa09f9](https://github.com/danhuang1202/react2amp/commit/4aa09f9))
+
 ## 1.12.0 (2019-10-07)
 
 * feat: use dangerouslySetInnerHTML to set style ([6403fde](https://github.com/danhuang1202/react2amp/commit/6403fde))
