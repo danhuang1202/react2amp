@@ -1,3 +1,7 @@
+## 1.16.0 (2019-10-08)
+
+* feat: add AmpScript ([47b538b](https://github.com/danhuang1202/react2amp/commit/47b538b))
+
 ## <small>1.15.1 (2019-10-08)</small>
 
 * fix: update import path ([4a3644c](https://github.com/danhuang1202/react2amp/commit/4a3644c))
