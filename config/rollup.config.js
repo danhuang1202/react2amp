@@ -26,23 +26,6 @@ const entries = [
       {
         dir: 'lib/plugins',
         format: 'cjs'
-      },
-      {
-        dir: 'es/plugins',
-        format: 'cjs'
-      }
-    ]
-  },
-  {
-    input: 'src/amp/index.ts',
-    output: [
-      {
-        dir: 'lib/amp',
-        format: 'cjs'
-      },
-      {
-        dir: 'es/amp',
-        format: 'es'
       }
     ]
   }
