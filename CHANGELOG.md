@@ -1,3 +1,8 @@
+## <small>1.15.1 (2019-10-08)</small>
+
+* fix: update import path ([4a3644c](https://github.com/danhuang1202/react2amp/commit/4a3644c))
+* chore: move amp into components ([b7b2fb5](https://github.com/danhuang1202/react2amp/commit/b7b2fb5))
+
 ## 1.15.0 (2019-10-07)
 
 * feat: main import ([1d19d72](https://github.com/danhuang1202/react2amp/commit/1d19d72))
