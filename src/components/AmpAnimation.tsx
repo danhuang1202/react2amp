@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react'
+import React, { ReactElement } from 'react'
+import AmpScript from './AmpScript'
 
 type Props = {
   /** id for amp-animation component */
@@ -7,17 +8,16 @@ type Props = {
   animation: object
 }
 
-function AmpAnimation({ id, animation }: Props): ReactNode {
-  const script = React.createElement('script', {
-    type: 'application/json',
-    dangerouslySetInnerHTML: {
-      __html: JSON.stringify(animation)
-    }
-  })
-  return React.createElement(
-    'amp-animation',
-    { id, layout: 'nodisplay' },
-    script
+function AmpAnimation({ id, animation }: Props): ReactElement {
+  return (
+    <AmpScript
+      tag="amp-animation"
+      attribute={{
+        id,
+        layout: 'nodisplay'
+      }}
+      data={animation}
+    />
   )
 }
 
