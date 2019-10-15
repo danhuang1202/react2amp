@@ -2,7 +2,7 @@ import React, { ReactElement, ReactNode, isValidElement } from 'react'
 import AmpProvider from './AmpProvider'
 import { AmpScript } from '../plugins/webpack'
 
-type Props = {
+export type Props = {
   /** Array of React elements for <head /> tags */
   head?: ReactElement[]
   /** Main react element or HTML string */
@@ -14,8 +14,6 @@ type Props = {
     scripts?: AmpScript
     css?: string
   }
-  /** Regular HTML version of the AMP HTML document */
-  canonical: string
 }
 
 const AMP_VERSION = 'v0'
@@ -34,6 +32,8 @@ function getRuntimeCss(styles: ReactElement[] = []): string {
     // @ts-ignore Property 'dangerouslySetInnerHTML' does not exist on type 'unknown'.
     isValidElement(style) ? style.props.dangerouslySetInnerHTML.__html : ''
   )
+
+  // remove comment and change line
   return cssContent
     .join('')
     .replace(/\/\*.*\*\//g, '')
@@ -41,18 +41,23 @@ function getRuntimeCss(styles: ReactElement[] = []): string {
 }
 
 function filterHead(head: ReactElement[] = []): ReactElement[] {
-  return React.Children.map(head, children => {
+  let hasCanonical = false
+  const fiteredHead = React.Children.map(head, children => {
     const { type = '', props = {} } = children
     let warning = ''
 
     if (type === 'meta') {
       if ('charSet' in props) {
         warning =
-          '<meta charSet="..." /> already add into <Html />, please remove it'
+          '<meta charSet="..." /> will add by react2amp, please remove it from head props'
       } else if (props.name === 'viewport') {
         warning =
-          '<meta viewport="..." /> already add into <Html />, please remove it'
+          '<meta viewport="..." /> will add by react2amp, please remove it from head props'
       }
+    }
+
+    if (type === 'link' && props['rel'] === 'canonical') {
+      hasCanonical = true
     }
 
     if (warning) {
@@ -62,15 +67,15 @@ function filterHead(head: ReactElement[] = []): ReactElement[] {
 
     return children
   })
+
+  if (!hasCanonical) {
+    console.warn('please add canonical into head props')
+  }
+
+  return fiteredHead
 }
 
-function Html({
-  head,
-  main,
-  asset = {},
-  styles = [],
-  canonical
-}: Props): ReactElement {
+function Html({ head, main, asset = {}, styles = [] }: Props): ReactElement {
   const { scripts = [], css = '' } = asset
   const runtimeCss = getRuntimeCss(styles)
   const headElement = filterHead(head)
@@ -85,7 +90,6 @@ function Html({
             name="viewport"
             content="width=device-width,minimum-scale=1,initial-scale=1"
           />
-          <link rel="canonical" href={canonical} />
           {(css || runtimeCss) && (
             <style
               amp-custom=""
