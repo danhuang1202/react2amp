@@ -1,3 +1,9 @@
+## 1.17.0 (2019-10-15)
+
+* feat: remove AmpScript, AmpAnimation and AmpState ([452a12e](https://github.com/danhuang1202/react2amp/commit/452a12e))
+* feat: remove entry and assetFile props ([ccd690e](https://github.com/danhuang1202/react2amp/commit/ccd690e))
+* docs: update README ([293f20c](https://github.com/danhuang1202/react2amp/commit/293f20c))
+
 ## 1.16.0 (2019-10-08)
 
 * feat: add AmpScript ([47b538b](https://github.com/danhuang1202/react2amp/commit/47b538b))
