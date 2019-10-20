@@ -19,6 +19,7 @@ npm inatall --save react2amp
 - Html
 
   React component which render whole AMP HTML includes all necessary tags meets AMP HTML specification   
+  
   | props | type | required | default | description |
   | --- | --- | --- | --- | --- |
   | head | ReactElement[] | false | [] | Array of `React.Element` tags(such as title, link and meta) |
@@ -198,7 +199,7 @@ npm inatall --save react2amp
 - getAmpAsset
 
   get assets by entry from JSON file generate by `webpackPluginAmpAssets`
-  
+
   | props | type | required | default | description |
   | --- | --- | --- | --- | --- |
   | entry | string | true | '' | webpack entry |
