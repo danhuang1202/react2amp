@@ -97,6 +97,7 @@ npm inatall --save react2amp
 - webpackPluginAmpAssets
   
   Webpack plugin to collect AMP component tags and css by each entry
+
   | props | type | required | default | description |
   | --- | --- | --- | --- | --- |
   | filename | string | true | - | The file to write the assets to |
@@ -180,6 +181,7 @@ npm inatall --save react2amp
 - expressAmpMiddleware
 
   Express middleware to response AMP page to client side.
+
   | props | type | required | default | description |
   | --- | --- | --- | --- | --- |
   | head | ReactElement[] | false | [] | Array of `React.Element` tags(such as title, link and meta) |
@@ -196,6 +198,7 @@ npm inatall --save react2amp
 - getAmpAsset
 
   get assets by entry from JSON file generate by `webpackPluginAmpAssets`
+  
   | props | type | required | default | description |
   | --- | --- | --- | --- | --- |
   | entry | string | true | '' | webpack entry |
