@@ -1,3 +1,9 @@
+## 1.18.0 (2019-10-23)
+
+* feat: get amp component information from asset to leveage tree shaking feature ([b31e00f](https://github.com/danhuang1202/react2amp/commit/b31e00f))
+* docs: update table in readme ([e1b7e49](https://github.com/danhuang1202/react2amp/commit/e1b7e49))
+* docs: update table in readme ([f1a7902](https://github.com/danhuang1202/react2amp/commit/f1a7902))
+
 ## 1.17.0 (2019-10-15)
 
 * feat: remove AmpScript, AmpAnimation and AmpState ([452a12e](https://github.com/danhuang1202/react2amp/commit/452a12e))
