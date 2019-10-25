@@ -48,7 +48,7 @@ class AmpAssetPlugin {
   public apply(compiler) {
     compiler.hooks.emit.tapAsync('AmpAssetsPlugin', (compilation, callback) => {
       const result = {}
-      // const ampComponentMap = {}
+      const ampComponentMap = {}
       const javascriptRegex = /\.(js|mjs)(\?|$)/
       const cssRegex = /\.css(\?|$)/
 
@@ -71,93 +71,87 @@ class AmpAssetPlugin {
         let css = ''
 
         data.chunks.forEach(chunk => {
-          // const modules = chunk.getModules() || []
+          const modules = chunk.getModules() || []
 
-          // for (let i = 0; i < modules.length; i++) {
-          //   const module = modules[i]
-          //   const moduleType = module.constructor.name
+          for (let i = 0; i < modules.length; i++) {
+            const module = modules[i]
+            const moduleType = module.constructor.name
 
-          //   if (moduleType === 'ConcatenatedModule') {
-          //     for (const concatennation of module._orderedConcatenationList) {
-          //       const { type, module } = concatennation
-          //       if (type !== 'concatenated') {
-          //         continue
-          //       }
+            if (moduleType === 'ConcatenatedModule') {
+              for (const concatennation of module._orderedConcatenationList) {
+                const { type, module } = concatennation
+                if (type !== 'concatenated') {
+                  continue
+                }
 
-          //       // module reference: https://github.com/webpack/docs/wiki/plugins#the-normalmodulefactory
-          //       const { request, _source } = module
+                // module reference: https://github.com/webpack/docs/wiki/plugins#the-normalmodulefactory
+                const { request, _source } = module
 
-          //       if (
-          //         !_source ||
-          //         !javascriptRegex.test(request) ||
-          //         (this.excludeResourcesRegExp &&
-          //           this.excludeResourcesRegExp.test(request))
-          //       ) {
-          //         continue
-          //       }
+                if (
+                  !_source ||
+                  !javascriptRegex.test(request) ||
+                  (this.excludeResourcesRegExp &&
+                    this.excludeResourcesRegExp.test(request))
+                ) {
+                  continue
+                }
 
-          //       if (ampComponentMap[request]) {
-          //         scripts = this.dedupAmpCompoents(
-          //           scripts,
-          //           ampComponentMap[request]
-          //         )
-          //       } else {
-          //         const newAmpComponents = this.findAmpComponents(
-          //           _source.source()
-          //         )
+                if (ampComponentMap[request]) {
+                  scripts = this.dedupAmpCompoents(
+                    scripts,
+                    ampComponentMap[request]
+                  )
+                } else {
+                  const newAmpComponents = this.findAmpComponents(
+                    _source.source()
+                  )
 
-          //         if (newAmpComponents) {
-          //           ampComponentMap[request] = newAmpComponents
-          //           scripts = this.dedupAmpCompoents(scripts, newAmpComponents)
-          //         }
-          //       }
-          //     }
-          //   } else if (moduleType === 'NormalModule') {
-          //     // module reference: https://github.com/webpack/docs/wiki/plugins#the-normalmodulefactory
-          //     const { request, _source } = module
+                  if (newAmpComponents) {
+                    ampComponentMap[request] = newAmpComponents
+                    scripts = this.dedupAmpCompoents(scripts, newAmpComponents)
+                  }
+                }
+              }
+            } else if (moduleType === 'NormalModule') {
+              // module reference: https://github.com/webpack/docs/wiki/plugins#the-normalmodulefactory
+              const { request, _source } = module
 
-          //     if (
-          //       !_source ||
-          //       !javascriptRegex.test(request) ||
-          //       (this.excludeResourcesRegExp &&
-          //         this.excludeResourcesRegExp.test(request))
-          //     ) {
-          //       continue
-          //     }
+              if (
+                !_source ||
+                !javascriptRegex.test(request) ||
+                (this.excludeResourcesRegExp &&
+                  this.excludeResourcesRegExp.test(request))
+              ) {
+                continue
+              }
 
-          //     if (ampComponentMap[request]) {
-          //       scripts = this.dedupAmpCompoents(
-          //         scripts,
-          //         ampComponentMap[request]
-          //       )
-          //     } else {
-          //       const newAmpComponents = this.findAmpComponents(
-          //         _source.source()
-          //       )
+              if (ampComponentMap[request]) {
+                scripts = this.dedupAmpCompoents(
+                  scripts,
+                  ampComponentMap[request]
+                )
+              } else {
+                const newAmpComponents = this.findAmpComponents(
+                  _source.source()
+                )
 
-          //       if (newAmpComponents) {
-          //         ampComponentMap[request] = newAmpComponents
-          //         scripts = this.dedupAmpCompoents(scripts, newAmpComponents)
-          //       }
-          //     }
-          //   }
-          // }
+                if (newAmpComponents) {
+                  ampComponentMap[request] = newAmpComponents
+                  scripts = this.dedupAmpCompoents(scripts, newAmpComponents)
+                }
+              }
+            }
+          }
 
           const files = chunk.files
           for (let i = 0; i < files.length; i++) {
             const filename = files[i]
-            if (javascriptRegex.test(filename)) {
-              const newAmpComponents = this.findAmpComponents(
-                compilation.assets[filename].source()
-              )
-              if (newAmpComponents) {
-                scripts = this.dedupAmpCompoents(scripts, newAmpComponents)
-              }
+
+            if (!cssRegex.test(filename)) {
+              continue
             }
 
-            if (cssRegex.test(filename)) {
-              css += compilation.assets[filename].source()
-            }
+            css += compilation.assets[filename].source()
           }
         })
 
