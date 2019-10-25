@@ -1,3 +1,5 @@
+const types = require('@babel/types')
+
 function ampClassName() {
   return {
     visitor: {
@@ -25,4 +27,46 @@ function ampClassName() {
   }
 }
 
-export default ampClassName
+function flatternImport() {
+  return {
+    visitor: {
+      ImportDeclaration(path, state = { opts: {} }) {
+        // https://babeljs.io/docs/en/babel-types#importdeclaration
+        const { specifiers, source } = path.node
+        const option = state.opts[source.value]
+
+        if (!option) {
+          return
+        }
+
+        const validImports = specifiers.filter(
+          ({ type }) => type === 'ImportSpecifier'
+        )
+
+        if (!validImports.length) {
+          return
+        }
+
+        const transforms = []
+
+        validImports.forEach(declaration => {
+          const { imported, local } = declaration
+          const newImportPath = `${option.importPath}${imported.name}`
+
+          transforms.push(
+            types.importDeclaration(
+              [types.importDefaultSpecifier(types.identifier(local.name))],
+              types.stringLiteral(newImportPath)
+            )
+          )
+        })
+
+        if (transforms.length > 0) {
+          path.replaceWithMultiple(transforms)
+        }
+      }
+    }
+  }
+}
+
+export { ampClassName, flatternImport }
