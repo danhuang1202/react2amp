@@ -1,3 +1,8 @@
+## <small>1.18.1 (2019-10-25)</small>
+
+* fix: add new babel plugin to flattern import ([0608c45](https://github.com/danhuang1202/react2amp/commit/0608c45))
+* fix: parse amp-component form module ([1308ad6](https://github.com/danhuang1202/react2amp/commit/1308ad6))
+
 ## 1.18.0 (2019-10-23)
 
 * feat: get amp component information from asset to leveage tree shaking feature ([b31e00f](https://github.com/danhuang1202/react2amp/commit/b31e00f))
