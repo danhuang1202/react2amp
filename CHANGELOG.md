@@ -1,3 +1,8 @@
+## <small>1.18.2 (2019-10-26)</small>
+
+* fix: add findAmpComponentFromNormalModule() ([e84d84e](https://github.com/danhuang1202/react2amp/commit/e84d84e))
+* fix: parse css from normal module ([cfcfc7b](https://github.com/danhuang1202/react2amp/commit/cfcfc7b))
+
 ## <small>1.18.1 (2019-10-25)</small>
 
 * fix: add new babel plugin to flattern import ([0608c45](https://github.com/danhuang1202/react2amp/commit/0608c45))
