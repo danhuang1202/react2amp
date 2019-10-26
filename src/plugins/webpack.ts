@@ -12,7 +12,8 @@ type Options = {
   filename: FileName
   includeEntries?: Entries
   excludeEntries?: Entries
-  excludeResourcesRegExp?: ExcludeResourcesRegExp
+  excludeJsResourcesRegExp?: ExcludeResourcesRegExp
+  excludeCssResourcesRegExp?: ExcludeResourcesRegExp
 }
 
 type AmpComponentMap = {
@@ -36,14 +37,16 @@ class AmpAssetPlugin {
   private filename: FileName
   private includeEntries: Entries
   private excludeEntries: Entries
-  private excludeResourcesRegExp: ExcludeResourcesRegExp
+  private excludeJsResourcesRegExp: ExcludeResourcesRegExp
+  private excludeCssResourcesRegExp: ExcludeResourcesRegExp
   private ampComponentMap: object
 
   public constructor(options: Options) {
     this.filename = options.filename
     this.includeEntries = options.includeEntries || []
     this.excludeEntries = options.excludeEntries || []
-    this.excludeResourcesRegExp = options.excludeResourcesRegExp
+    this.excludeJsResourcesRegExp = options.excludeJsResourcesRegExp
+    this.excludeCssResourcesRegExp = options.excludeCssResourcesRegExp
     this.ampComponentMap = {}
   }
 
@@ -51,6 +54,7 @@ class AmpAssetPlugin {
     compiler.hooks.emit.tapAsync('AmpAssetsPlugin', (compilation, callback) => {
       this.ampComponentMap = {}
       const result = {}
+      const javascriptRegex = /\.(js|mjs)(\?|$)/
       const cssRegex = /\.css(\?|$)/
 
       for (const [entry, data] of compilation.entrypoints.entries()) {
@@ -85,22 +89,30 @@ class AmpAssetPlugin {
                   continue
                 }
 
-                scripts = this.findAmpComponentFromNormalModule(module, scripts)
+                const { request } = module
+
+                if (javascriptRegex.test(request)) {
+                  scripts = this.findAmpComponentFromNormalModule(
+                    module,
+                    scripts
+                  )
+                }
+
+                if (cssRegex.test(request)) {
+                  css = this.findCssFromNormalModule(module, css)
+                }
               }
             } else if (moduleType === 'NormalModule') {
-              scripts = this.findAmpComponentFromNormalModule(module, scripts)
+              const { request } = module
+
+              if (javascriptRegex.test(request)) {
+                scripts = this.findAmpComponentFromNormalModule(module, scripts)
+              }
+
+              if (cssRegex.test(request)) {
+                css = this.findCssFromNormalModule(module, css)
+              }
             }
-          }
-
-          const files = chunk.files
-          for (let i = 0; i < files.length; i++) {
-            const filename = files[i]
-
-            if (!cssRegex.test(filename)) {
-              continue
-            }
-
-            css += compilation.assets[filename].source()
           }
         })
 
@@ -190,14 +202,13 @@ class AmpAssetPlugin {
     module: object,
     scripts: AmpComponentMap
   ): AmpComponentMap {
-    const javascriptRegex = /\.(js|mjs)(\?|$)/
     // @ts-ignore
     const { request, _source } = module
 
     if (
       !_source ||
-      !javascriptRegex.test(request) ||
-      (this.excludeResourcesRegExp && this.excludeResourcesRegExp.test(request))
+      (this.excludeJsResourcesRegExp &&
+        this.excludeJsResourcesRegExp.test(request))
     ) {
       return scripts
     }
@@ -214,6 +225,32 @@ class AmpAssetPlugin {
     }
 
     return scripts
+  }
+
+  private findCssFromNormalModule(normalModule: object, css: string): string {
+    // @ts-ignore
+    const { request, dependencies = [] } = normalModule
+    if (
+      this.excludeCssResourcesRegExp &&
+      this.excludeCssResourcesRegExp.test(request)
+    ) {
+      return css
+    }
+
+    for (const dependency of dependencies) {
+      const module = dependency.module
+      const moduleType = module.constructor.name
+
+      if (moduleType !== 'CssModule') {
+        continue
+      }
+
+      css += module.content
+        .replace(/\/\*[^*]*\*+([^\/][^*]*\*+)*\//g, '')
+        .replace(/\r?\n/g, '')
+    }
+
+    return css
   }
 }
 
