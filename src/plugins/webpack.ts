@@ -40,6 +40,7 @@ class AmpAssetPlugin {
   private excludeJsResourcesRegExp: ExcludeResourcesRegExp
   private excludeCssResourcesRegExp: ExcludeResourcesRegExp
   private ampComponentMap: object
+  private cssMap: object
 
   public constructor(options: Options) {
     this.filename = options.filename
@@ -48,11 +49,13 @@ class AmpAssetPlugin {
     this.excludeJsResourcesRegExp = options.excludeJsResourcesRegExp
     this.excludeCssResourcesRegExp = options.excludeCssResourcesRegExp
     this.ampComponentMap = {}
+    this.cssMap = {}
   }
 
   public apply(compiler) {
     compiler.hooks.emit.tapAsync('AmpAssetsPlugin', (compilation, callback) => {
       this.ampComponentMap = {}
+      this.cssMap = {}
       const result = {}
       const javascriptRegex = /\.(js|mjs)(\?|$)/
       const cssRegex = /\.css(\?|$)/
@@ -237,6 +240,8 @@ class AmpAssetPlugin {
       return css
     }
 
+    let result = ''
+
     for (const dependency of dependencies) {
       const module = dependency.module
       const moduleType = module.constructor.name
@@ -245,12 +250,20 @@ class AmpAssetPlugin {
         continue
       }
 
-      css += module.content
-        .replace(/\/\*[^*]*\*+([^\/][^*]*\*+)*\//g, '')
-        .replace(/\r?\n/g, '')
+      const { context, content } = module
+
+      if (this.cssMap[context]) {
+        result += this.cssMap[context]
+      } else {
+        const newCss = content
+          .replace(/\/\*[^*]*\*+([^\/][^*]*\*+)*\//g, '')
+          .replace(/\r?\n/g, '')
+        this.cssMap[context] = newCss
+        result += newCss
+      }
     }
 
-    return css
+    return css + result
   }
 }
 
