@@ -103,7 +103,8 @@ npm inatall --save react2amp
   | --- | --- | --- | --- | --- |
   | filename | string | true | - | The file to write the assets to |
   | includeEntries	| string[] | false | [] | Only collect assets from the entries inside `includeEntries` |
-  | excludeResourcesRegExp	| RegExp |	false | - | Ignore the module resources match the `excludeResourcesRegExp` rules |
+  | excludeJsResourcesRegExp	| RegExp |	false | - | Ignore the module resources match the `excludeJsResourcesRegExp` rules when finding AMP components |
+  | excludeCssResourcesRegExp	| RegExp |	false | - | Ignore the module resources match the `excludeCssResourcesRegExp` rules when finding css |
 
   usage: 
   ```js
