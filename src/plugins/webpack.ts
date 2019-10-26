@@ -37,19 +37,20 @@ class AmpAssetPlugin {
   private includeEntries: Entries
   private excludeEntries: Entries
   private excludeResourcesRegExp: ExcludeResourcesRegExp
+  private ampComponentMap: object
 
   public constructor(options: Options) {
     this.filename = options.filename
     this.includeEntries = options.includeEntries || []
     this.excludeEntries = options.excludeEntries || []
     this.excludeResourcesRegExp = options.excludeResourcesRegExp
+    this.ampComponentMap = {}
   }
 
   public apply(compiler) {
     compiler.hooks.emit.tapAsync('AmpAssetsPlugin', (compilation, callback) => {
+      this.ampComponentMap = {}
       const result = {}
-      const ampComponentMap = {}
-      const javascriptRegex = /\.(js|mjs)(\?|$)/
       const cssRegex = /\.css(\?|$)/
 
       for (const [entry, data] of compilation.entrypoints.entries()) {
@@ -84,62 +85,10 @@ class AmpAssetPlugin {
                   continue
                 }
 
-                // module reference: https://github.com/webpack/docs/wiki/plugins#the-normalmodulefactory
-                const { request, _source } = module
-
-                if (
-                  !_source ||
-                  !javascriptRegex.test(request) ||
-                  (this.excludeResourcesRegExp &&
-                    this.excludeResourcesRegExp.test(request))
-                ) {
-                  continue
-                }
-
-                if (ampComponentMap[request]) {
-                  scripts = this.dedupAmpCompoents(
-                    scripts,
-                    ampComponentMap[request]
-                  )
-                } else {
-                  const newAmpComponents = this.findAmpComponents(
-                    _source.source()
-                  )
-
-                  if (newAmpComponents) {
-                    ampComponentMap[request] = newAmpComponents
-                    scripts = this.dedupAmpCompoents(scripts, newAmpComponents)
-                  }
-                }
+                scripts = this.findAmpComponentFromNormalModule(module, scripts)
               }
             } else if (moduleType === 'NormalModule') {
-              // module reference: https://github.com/webpack/docs/wiki/plugins#the-normalmodulefactory
-              const { request, _source } = module
-
-              if (
-                !_source ||
-                !javascriptRegex.test(request) ||
-                (this.excludeResourcesRegExp &&
-                  this.excludeResourcesRegExp.test(request))
-              ) {
-                continue
-              }
-
-              if (ampComponentMap[request]) {
-                scripts = this.dedupAmpCompoents(
-                  scripts,
-                  ampComponentMap[request]
-                )
-              } else {
-                const newAmpComponents = this.findAmpComponents(
-                  _source.source()
-                )
-
-                if (newAmpComponents) {
-                  ampComponentMap[request] = newAmpComponents
-                  scripts = this.dedupAmpCompoents(scripts, newAmpComponents)
-                }
-              }
+              scripts = this.findAmpComponentFromNormalModule(module, scripts)
             }
           }
 
@@ -235,6 +184,36 @@ class AmpAssetPlugin {
       name,
       version: scripts[name]
     }))
+  }
+
+  private findAmpComponentFromNormalModule(
+    module: object,
+    scripts: AmpComponentMap
+  ): AmpComponentMap {
+    const javascriptRegex = /\.(js|mjs)(\?|$)/
+    // @ts-ignore
+    const { request, _source } = module
+
+    if (
+      !_source ||
+      !javascriptRegex.test(request) ||
+      (this.excludeResourcesRegExp && this.excludeResourcesRegExp.test(request))
+    ) {
+      return scripts
+    }
+
+    if (this.ampComponentMap[request]) {
+      return this.dedupAmpCompoents(scripts, this.ampComponentMap[request])
+    } else {
+      const newAmpComponents = this.findAmpComponents(_source.source())
+
+      if (newAmpComponents) {
+        this.ampComponentMap[request] = newAmpComponents
+        return this.dedupAmpCompoents(scripts, newAmpComponents)
+      }
+    }
+
+    return scripts
   }
 }
 
