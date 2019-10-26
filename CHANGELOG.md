@@ -1,3 +1,8 @@
+## <small>1.18.3 (2019-10-26)</small>
+
+* docs: update readme ([2911650](https://github.com/danhuang1202/react2amp/commit/2911650))
+* fix: cache css ([04a49a0](https://github.com/danhuang1202/react2amp/commit/04a49a0))
+
 ## <small>1.18.2 (2019-10-26)</small>
 
 * fix: add findAmpComponentFromNormalModule() ([e84d84e](https://github.com/danhuang1202/react2amp/commit/e84d84e))
