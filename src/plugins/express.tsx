@@ -1,6 +1,6 @@
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import AmpOptimizer from '@ampproject/toolbox-optimizer'
+// import AmpOptimizer from '@ampproject/toolbox-optimizer'
 import { RequestHandler } from 'express'
 import Html, { Props } from '../components/Html'
 
@@ -9,8 +9,8 @@ async function renderToAmpHtml({ res, head, main, styles, asset }) {
     <Html head={head} main={main} asset={asset} styles={styles} />
   )
 
-  const optimizer = AmpOptimizer.create()
-  html = await optimizer.transformHtml(html)
+  // const optimizer = AmpOptimizer.create()
+  // html = await optimizer.transformHtml(html)
 
   if (!res.getHeader('Content-Type')) {
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
