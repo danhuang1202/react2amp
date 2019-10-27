@@ -1,3 +1,7 @@
+## <small>1.18.4 (2019-10-27)</small>
+
+* fix: add renderToAmpHtml ([a78b580](https://github.com/danhuang1202/react2amp/commit/a78b580))
+
 ## <small>1.18.3 (2019-10-26)</small>
 
 * docs: update readme ([2911650](https://github.com/danhuang1202/react2amp/commit/2911650))
