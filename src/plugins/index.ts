@@ -3,7 +3,10 @@ import {
   flatternImport as babelPluginFaltternImport
 } from './babel'
 import webpackPluginAmpAssets from './webpack'
-import expressAmpMiddleware from './express'
+import {
+  ampMiddleware as expressAmpMiddleware,
+  renderToAmpHtml
+} from './express'
 import { getAmpAsset } from '../utils/asset'
 
 export {
@@ -11,5 +14,6 @@ export {
   babelPluginFaltternImport,
   webpackPluginAmpAssets,
   expressAmpMiddleware,
+  renderToAmpHtml,
   getAmpAsset
 }

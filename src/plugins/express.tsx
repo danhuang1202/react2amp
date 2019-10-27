@@ -1,18 +1,35 @@
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
+import { renderToStaticMarkup } from 'react-dom/server'
+import AmpOptimizer from '@ampproject/toolbox-optimizer'
 import { RequestHandler } from 'express'
 import Html, { Props } from '../components/Html'
+
+async function renderToAmpHtml({ res, head, main, styles, asset }) {
+  let html = renderToStaticMarkup(
+    <Html head={head} main={main} asset={asset} styles={styles} />
+  )
+
+  const optimizer = AmpOptimizer.create()
+  html = await optimizer.transformHtml(html)
+
+  if (!res.getHeader('Content-Type')) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8')
+  }
+
+  res.setHeader('Content-Length', Buffer.byteLength(html))
+  res.end(html)
+}
 
 function ampMiddleware({ head, main, styles, asset }: Props): RequestHandler {
   return (req, res, next) => {
     try {
-      const html = (
-        <Html head={head} main={main} asset={asset} styles={styles} />
-      )
-
-      res.status(200)
-      res.send(`<!doctype html>\n${ReactDOMServer.renderToStaticMarkup(html)}`)
-      res.end()
+      renderToAmpHtml({
+        res,
+        head,
+        main,
+        styles,
+        asset
+      })
     } catch (e) {
       console.error(`render HTML failed, ${e}`)
     } finally {
@@ -21,4 +38,4 @@ function ampMiddleware({ head, main, styles, asset }: Props): RequestHandler {
   }
 }
 
-export default ampMiddleware
+export { ampMiddleware, renderToAmpHtml }
