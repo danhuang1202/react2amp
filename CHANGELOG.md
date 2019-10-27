@@ -1,3 +1,7 @@
+## <small>1.18.5 (2019-10-27)</small>
+
+* fix: temp disable amp optimiser ([5f3ae79](https://github.com/danhuang1202/react2amp/commit/5f3ae79))
+
 ## <small>1.18.4 (2019-10-27)</small>
 
 * fix: add renderToAmpHtml ([a78b580](https://github.com/danhuang1202/react2amp/commit/a78b580))
