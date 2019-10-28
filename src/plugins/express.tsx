@@ -5,9 +5,11 @@ import { RequestHandler } from 'express'
 import Html, { Props } from '../components/Html'
 
 async function renderToAmpHtml({ res, head, main, styles, asset }) {
-  let html = renderToStaticMarkup(
-    <Html head={head} main={main} asset={asset} styles={styles} />
-  )
+  let html =
+    '<!DOCTYPE html>' +
+    renderToStaticMarkup(
+      <Html head={head} main={main} asset={asset} styles={styles} />
+    )
 
   // const optimizer = AmpOptimizer.create()
   // html = await optimizer.transformHtml(html)
