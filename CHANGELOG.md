@@ -1,3 +1,8 @@
+## 1.19.0 (2019-10-28)
+
+* feat: move express from plugins to utils ([556e500](https://github.com/danhuang1202/react2amp/commit/556e500))
+* fix: render doctype ([1635a1a](https://github.com/danhuang1202/react2amp/commit/1635a1a))
+
 ## <small>1.18.5 (2019-10-27)</small>
 
 * fix: temp disable amp optimiser ([5f3ae79](https://github.com/danhuang1202/react2amp/commit/5f3ae79))
