@@ -193,7 +193,7 @@ npm inatall --save react2amp
 
   usage: 
   ```js
-  import { expressAmpMiddleware } from 'react2amp/plugins'
+  import { expressAmpMiddleware } from 'react2amp'
   app.get('/amp/example', expressAmpMiddleware({...}))
   ```
 
