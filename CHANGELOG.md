@@ -1,3 +1,21 @@
+## <small>1.19.1 (2020-10-29)</small>
+
+* fix: remove @ampproject/toolbox-optimizer from package dependency ([9ff127d](https://github.com/danhuang1202/react2amp/commit/9ff127d))
+* Merge pull request #1 from danhuang1202/dependabot/npm_and_yarn/npm-6.13.4 ([58d79e7](https://github.com/danhuang1202/react2amp/commit/58d79e7)), closes [#1](https://github.com/danhuang1202/react2amp/issues/1)
+* Merge pull request #2 from danhuang1202/dependabot/npm_and_yarn/handlebars-4.5.3 ([e401662](https://github.com/danhuang1202/react2amp/commit/e401662)), closes [#2](https://github.com/danhuang1202/react2amp/issues/2)
+* Merge pull request #3 from danhuang1202/dependabot/npm_and_yarn/codecov-3.6.5 ([cf91a32](https://github.com/danhuang1202/react2amp/commit/cf91a32)), closes [#3](https://github.com/danhuang1202/react2amp/issues/3)
+* Merge pull request #4 from danhuang1202/dependabot/npm_and_yarn/acorn-5.7.4 ([5a436f2](https://github.com/danhuang1202/react2amp/commit/5a436f2)), closes [#4](https://github.com/danhuang1202/react2amp/issues/4)
+* Merge pull request #5 from danhuang1202/dependabot/npm_and_yarn/https-proxy-agent-2.2.4 ([247b9ce](https://github.com/danhuang1202/react2amp/commit/247b9ce)), closes [#5](https://github.com/danhuang1202/react2amp/issues/5)
+* Merge pull request #6 from danhuang1202/dependabot/npm_and_yarn/npm-6.14.6 ([b6f7c4e](https://github.com/danhuang1202/react2amp/commit/b6f7c4e)), closes [#6](https://github.com/danhuang1202/react2amp/issues/6)
+* Merge pull request #7 from danhuang1202/dependabot/npm_and_yarn/codecov-3.7.1 ([9df94d9](https://github.com/danhuang1202/react2amp/commit/9df94d9)), closes [#7](https://github.com/danhuang1202/react2amp/issues/7)
+* chore(deps-dev): bump codecov from 3.6.1 to 3.6.5 ([92efabe](https://github.com/danhuang1202/react2amp/commit/92efabe))
+* chore(deps-dev): bump codecov from 3.6.5 to 3.7.1 ([8d09cda](https://github.com/danhuang1202/react2amp/commit/8d09cda))
+* chore(deps): bump acorn from 5.7.3 to 5.7.4 ([205724f](https://github.com/danhuang1202/react2amp/commit/205724f))
+* chore(deps): bump handlebars from 4.2.0 to 4.5.3 ([1e8af41](https://github.com/danhuang1202/react2amp/commit/1e8af41))
+* chore(deps): bump https-proxy-agent from 2.2.2 to 2.2.4 ([d596428](https://github.com/danhuang1202/react2amp/commit/d596428))
+* chore(deps): bump npm from 6.11.3 to 6.13.4 ([40e1a56](https://github.com/danhuang1202/react2amp/commit/40e1a56))
+* chore(deps): bump npm from 6.13.4 to 6.14.6 ([36aa31b](https://github.com/danhuang1202/react2amp/commit/36aa31b))
+
 ## 1.19.0 (2019-10-28)
 
 * feat: move express from plugins to utils ([556e500](https://github.com/danhuang1202/react2amp/commit/556e500))
