@@ -40,7 +40,6 @@ class AmpAssetPlugin {
   private excludeJsResourcesRegExp: ExcludeResourcesRegExp
   private excludeCssResourcesRegExp: ExcludeResourcesRegExp
   private ampComponentMap: object
-  private cssMap: object
 
   public constructor(options: Options) {
     this.filename = options.filename
@@ -49,16 +48,13 @@ class AmpAssetPlugin {
     this.excludeJsResourcesRegExp = options.excludeJsResourcesRegExp
     this.excludeCssResourcesRegExp = options.excludeCssResourcesRegExp
     this.ampComponentMap = {}
-    this.cssMap = {}
   }
 
   public apply(compiler) {
     compiler.hooks.emit.tapAsync('AmpAssetsPlugin', (compilation, callback) => {
       this.ampComponentMap = {}
-      this.cssMap = {}
       const result = {}
       const javascriptRegex = /\.(js|mjs)(\?|$)/
-      const cssRegex = /\.css(\?|$)/
 
       for (const [entry, data] of compilation.entrypoints.entries()) {
         if (
@@ -79,30 +75,19 @@ class AmpAssetPlugin {
         let css = ''
 
         data.chunks.forEach(chunk => {
-          const modules = chunk.getModules() || []
+          const modules = compilation.chunkGraph.getChunkModules(chunk) || []
 
           for (let i = 0; i < modules.length; i++) {
             const module = modules[i]
             const moduleType = module.constructor.name
 
             if (moduleType === 'ConcatenatedModule') {
-              for (const concatennation of module._orderedConcatenationList) {
-                const { type, module } = concatennation
-                if (type !== 'concatenated') {
-                  continue
-                }
-
-                const { request } = module
-
-                if (javascriptRegex.test(request)) {
+              for (const concatenation of module._modules) {
+                if (javascriptRegex.test(concatenation.request)) {
                   scripts = this.findAmpComponentFromNormalModule(
-                    module,
+                    concatenation,
                     scripts
                   )
-                }
-
-                if (cssRegex.test(request)) {
-                  css = this.findCssFromNormalModule(module, css)
                 }
               }
             } else if (moduleType === 'NormalModule') {
@@ -111,10 +96,8 @@ class AmpAssetPlugin {
               if (javascriptRegex.test(request)) {
                 scripts = this.findAmpComponentFromNormalModule(module, scripts)
               }
-
-              if (cssRegex.test(request)) {
-                css = this.findCssFromNormalModule(module, css)
-              }
+            } else if (moduleType === 'CssModule') {
+              css = this.findCssFromModule(module, css)
             }
           }
         })
@@ -230,40 +213,23 @@ class AmpAssetPlugin {
     return scripts
   }
 
-  private findCssFromNormalModule(normalModule: object, css: string): string {
+  private findCssFromModule(module: object, css: string): string {
     // @ts-ignore
-    const { request, dependencies = [] } = normalModule
+    const { context, content: moduleContent } = module
+    const content = moduleContent.toString()
+
     if (
       this.excludeCssResourcesRegExp &&
-      this.excludeCssResourcesRegExp.test(request)
+      this.excludeCssResourcesRegExp.test(context)
     ) {
       return css
     }
 
-    let result = ''
+    const newCss = content
+      .replace(/\/\*[^*]*\*+([^/][^*]*\*+)*\//g, '')
+      .replace(/\r?\n/g, '')
 
-    for (const dependency of dependencies) {
-      const module = dependency.module
-      const moduleType = module.constructor.name
-
-      if (moduleType !== 'CssModule') {
-        continue
-      }
-
-      const { context, content } = module
-
-      if (this.cssMap[context]) {
-        result += this.cssMap[context]
-      } else {
-        const newCss = content
-          .replace(/\/\*[^*]*\*+([^\/][^*]*\*+)*\//g, '')
-          .replace(/\r?\n/g, '')
-        this.cssMap[context] = newCss
-        result += newCss
-      }
-    }
-
-    return css + result
+    return css + newCss
   }
 }
 
