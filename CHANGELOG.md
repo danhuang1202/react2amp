@@ -1,3 +1,7 @@
+## <small>5.0.1 (2021-01-06)</small>
+
+* fix: update README.md and bump version ([0e1a816](https://github.com/danhuang1202/react2amp/commit/0e1a816))
+
 ## <small>1.19.1 (2020-10-29)</small>
 
 * fix: remove @ampproject/toolbox-optimizer from package dependency ([9ff127d](https://github.com/danhuang1202/react2amp/commit/9ff127d))
