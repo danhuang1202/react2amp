@@ -4,6 +4,10 @@
 
 Easy to migrate exist React App (build by Webpack, babel and Express) to AMP website.
 
+Thanks @savemuse's contrubutes to add support for webpack@5
+for webpack@4 users, please use @react2amp@1
+for webpack@5 users, please use @react2amp@5
+
 ## Features
 1. Collect AMP component tags and generate script tag to load these resources, 
 2. Support customized AMP component version specification like: `<amp-carousel data-ver="0.2">{...}</amp-carousel>`
