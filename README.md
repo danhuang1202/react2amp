@@ -4,8 +4,10 @@
 
 Easy to migrate exist React App (build by Webpack, babel and Express) to AMP website.
 
-Thanks @savemuse's contrubutes to add support for webpack@5
+Thanks @savemuse contrubutes to add support for webpack@5
+<br>
 for webpack@4 users, please use @react2amp@1
+<br>
 for webpack@5 users, please use @react2amp@5
 
 ## Features
