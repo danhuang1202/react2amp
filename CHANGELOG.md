@@ -1,3 +1,9 @@
+## <small>5.0.2 (2021-01-14)</small>
+
+* fix: update README.md and bump version ([e2ea9c1](https://github.com/danhuang1202/react2amp/commit/e2ea9c1))
+* chore: update README.md ([9e29b87](https://github.com/danhuang1202/react2amp/commit/9e29b87))
+* chore: upgrade to react 17 (#14) ([1e0da54](https://github.com/danhuang1202/react2amp/commit/1e0da54)), closes [#14](https://github.com/danhuang1202/react2amp/issues/14)
+
 ## <small>5.0.1 (2021-01-06)</small>
 
 * fix: update README.md and bump version ([0e1a816](https://github.com/danhuang1202/react2amp/commit/0e1a816))
