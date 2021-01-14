@@ -12,7 +12,7 @@
     "build:bundle": "rollup -c ./config/rollup.config.js",
     "build:type": "tsc --project ./config/tsconfig.type.json",
     "lint": "eslint './src/**/*.{ts,tsx}'",
-    "prettier": "prettier --check ./**/*.{ts,tsx,js,json}"
+    "prettier": "prettier --check ./**/*.{ts,tsx,js,json} ./**.js"
   },
   "husky": {
     "hooks": {
@@ -38,18 +38,18 @@
   "license": "ISC",
   "dependencies": {
     "@babel/types": "^7.6.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "string.prototype.matchall": "^3.0.1"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.8.6 || ^17.0.0",
+    "react-dom": "^16.8.6 || ^17.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
+    "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.6.2",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.3.3",
     "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/git": "^7.0.16",
