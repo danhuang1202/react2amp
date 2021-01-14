@@ -3,6 +3,8 @@
 [![NPM version](https://img.shields.io/npm/v/react2amp.svg)](https://www.npmjs.com/package/react2amp)
 
 Easy to migrate exist React App (build by Webpack, babel and Express) to AMP website.
+<br>
+both support react@16 and react@17
 
 Thanks @savemuse contrubutes to add support for webpack@5
 <br>
